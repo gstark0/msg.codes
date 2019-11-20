@@ -1,0 +1,125 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    color: #222;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+p {
+    line-height: 24px;
+}
+
+.container {
+    max-width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#logo {
+    font-size: 24px;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    font-weight: 700;
+}
+
+#logo span {
+    color: #A69FFF;
+}
+
+#main-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact-container {
+    margin-top: 35px;
+    background-image: url(../img/background_img.svg);
+    width: 730px;
+    height: 580px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+form {
+    padding: 35px;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    width: calc(345px - 70px);
+    margin: 58px auto 0 auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+form p {
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+input, button {
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .2s;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    width: calc(100% - 40px);
+    background-color: #F2F4F9;
+}
+
+input:hover, input:focus {
+    background-color: #EAEFFD;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #AAAFC5;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #AAAFC5;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #AAAFC5;
+}
+
+button {
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#generate-button {
+    background-color: #A69FFF;
+}
+
+#generate-button:hover {
+    background-color: #8CF0D0;
+}

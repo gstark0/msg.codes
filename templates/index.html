@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>msg.codes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div id="logo">msg<span>.</span>codes</div>
+
+        <div id="main-text">
+            <h1>Contact form in a link</h1>
+            <p>Generate your own contact form and let other people contact you without disclosing your email.</p>
+        </div>
+
+        <div class="contact-container">
+            <form autocomplete="off">
+                <p>All emails sent through your contact link are going to be redirected to your own email!</p>
+                <input type="text" placeholder="Name" id="name" name="name">
+                <input type="text" placeholder="Email" id="email" name="email">
+                <button id="generate-button" onclick="generateLink();">Generate link</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../static/js/generate.js"></script>
+</body>
+</html>
