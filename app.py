@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sqlite3
 import random
 import string
@@ -23,6 +23,31 @@ def add_link():
         cur.execute('INSERT into links (link_id, name, email) VALUES (?, ?, ?)', (link_id, data['name'], data['email']))
         conn.commit()
         return json.dumps({'link_id': link_id})
+
+@app.route('/<link_id>/send', methods=['POST'])
+def send_message(link_id):
+    print(link_id, 'sent!!!!')
+
+    return json.dumps('works')
+
+@app.route('/<link_id>')
+def contact(link_id):
+    # Get link_id from the url
+    # Get db record by link_url
+    # Render contact page with contact data
+    print(link_id)
+    with sqlite3.connect(db_name) as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT name, email FROM links WHERE link_id=?', (link_id,))
+        contact_data = cur.fetchall()
+        if len(contact_data) > 0:
+            return render_template('contact.html', name=contact_data[0][0], link_id=link_id)
+    return redirect('/')
+
+# This is to ensure that GET /favicon.ico won't call contact function
+@app.route('/favicon.ico')
+def icon_route():
+    return redirect('/static/favicon.ico')
 
 @app.route('/')
 def main():

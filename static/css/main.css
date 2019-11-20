@@ -14,6 +14,16 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+h2 span {
+    color: #8CF0D0;
+}
+
 p {
     line-height: 24px;
 }
@@ -122,4 +132,24 @@ button:hover {
 
 #generate-button:hover {
     background-color: #8CF0D0;
+}
+
+#send-button {
+    background-color: #8CF0D0;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #F2F4F9;
+    transition: .2s;
+    outline: none;
+    font-size: 16px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+textarea:hover, textarea:focus {
+    background-color: #EAEFFD;
 }

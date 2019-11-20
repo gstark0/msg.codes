@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <div id="logo">msg<span>.</span>codes</div>
+        <div id="logo">msg<span style="color: #8CF0D0;">.</span>codes</div>
 
         <div id="main-text">
             <h1>Contact form in a link</h1>
@@ -20,14 +20,19 @@
 
         <div class="contact-container">
             <form autocomplete="off">
-                <p>All emails sent through your contact link are going to be redirected to your own email!</p>
+                <h2>Contact <span>{{ name }}</span></h2>
+                <p>You can contact {{ name }} through the following form!</p>
                 <input type="text" placeholder="Name" id="name" name="name">
                 <input type="text" placeholder="Email" id="email" name="email">
-                <button id="generate-button" onclick="generateLink();">Generate link</button>
+                <textarea name="message" id="message" cols="30" rows="5" placeholder="Your message"></textarea>
+                <button id="send-button" onclick="sendMessage();">Send</button>
             </form>
         </div>
     </div>
 
+    <script>
+        var linkId = '{{ link_id }}';
+    </script>
     <script src="../static/main.js"></script>
 </body>
 </html>
