@@ -15,12 +15,13 @@ function generateLink() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({name: name, email: email})
-        }).then(resp => {
-            console.log(resp)
+        }).then(resp => resp.json())
+        .then(resp => {
+            // Change button's text to a new link
+            console.log(resp);
+            btn.innerHTML = 'msg.codes/' + resp.link_id;
+            btn.onclick = function() {event.preventDefault();};
         });
-
-        // Change button's text to a new link
-        btn.innerHTML = 'msg.codes/y1Dz1g';
     } else {
         alert('not works');
     }
