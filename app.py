@@ -1,12 +1,15 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, abort
 import sqlite3
 import random
 import string
 import json
+import requests
 
 db_name = 'database.db'
 
 app = Flask(__name__)
+
+g_secret = ''
 
 # Generate 6-digit ID
 def generate_id():
@@ -26,9 +29,12 @@ def add_link():
 
 @app.route('/<link_id>/send', methods=['POST'])
 def send_message(link_id):
-    print(link_id, 'sent!!!!')
-
-    return json.dumps('works')
+    data = request.get_json()
+    r = requests.post('https://www.google.com/recaptcha/api/siteverify', data={'secret': g_secret, 'response': data['captcha']})
+    g_response = r.json()
+    if g_response['score'] < 0.6:
+        return abort(500)
+    return json.dumps('sent')
 
 @app.route('/<link_id>')
 def contact(link_id):

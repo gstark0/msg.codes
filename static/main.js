@@ -52,19 +52,21 @@ function sendMessage() {
         email.disabled = true;
         message.disabled = true;
 
-        fetch('/' + linkId + '/send', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({name: name.value, email: email.value, message: message.vaue})
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            // Change button's text to a new link
-            btn.innerHTML = 'Message sent!';
-            btn.onclick = function() {event.preventDefault();};
-            alert('Your message has been sent!')
+        grecaptcha.execute('6Ld44cMUAAAAALUTNRNGAUqagitYS5MQPqZ49Lb4', {action: 'homepage'}).then(function(token) {
+            fetch('/' + linkId + '/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name: name.value, email: email.value, message: message.value, captcha: token})
+            })
+            .then(resp => resp.json())
+            .then(resp => {
+                // Change button's text to a new link
+                btn.innerHTML = 'Message sent!';
+                btn.onclick = function() {event.preventDefault();};
+                alert('Your message has been sent!')
+            });
         });
     } else {
 
