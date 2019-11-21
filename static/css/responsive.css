@@ -1,0 +1,55 @@
+@media screen and (max-height: 915px) {
+    .contact-container {
+        width: 600px;
+        height: 495px;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .contact-container {
+        width: 550px;
+        height: unset;
+        margin-top: 0;
+    }
+
+    form {
+        margin-top: 40px;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-container {
+        width: 100%;
+        height: unset;
+        margin: 0;
+    }
+
+    .container {
+        height: unset;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    form {
+        margin: 0 auto;
+        width: calc(100% - 70px);
+    }
+
+    #logo {
+        margin: 0 auto;
+        position: static;
+        margin: 45px 0;
+    }
+}
