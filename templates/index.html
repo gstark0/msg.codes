@@ -25,6 +25,11 @@
                 <input type="text" placeholder="Name" id="name" name="name">
                 <input type="text" placeholder="Email" id="email" name="email">
                 <button id="generate-button" onclick="generateLink();">Generate link</button>
+
+                <div id="generated-link-container">
+                    <span class="tooltip-text" id="link-tooltip">Copy to clipboard</span>
+                    <input style="display: none;" type="text" name="generated-link" id="generated-link" onclick="copyLink();" value="" readonly>
+                </div>
             </form>
         </div>
     </div>

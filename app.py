@@ -9,7 +9,7 @@ db_name = 'database.db'
 
 app = Flask(__name__)
 
-g_secret = ''
+g_secret = '6Ld44cMUAAAAAOjyxpHLSPseZhPnTht-DXZKQOj_'
 
 # Generate 6-digit ID
 def generate_id():
