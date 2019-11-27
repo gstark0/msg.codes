@@ -28,7 +28,7 @@ function generateLink() {
             // Change button's text to a new link
             btn.style.display = 'none';
             generated_link_btn.style.display = 'block';
-            generated_link_btn.value = 'msg.codes/' + resp.link_id;
+            generated_link_btn.value = 'msg.gstark.me/' + resp.link_id;
             btn.onclick = function() {event.preventDefault();};
         });
 
