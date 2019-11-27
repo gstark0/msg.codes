@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, abort
+from flask_mail import Mail, Message
 import sqlite3
 import random
 import string
@@ -9,7 +10,15 @@ db_name = 'database.db'
 
 app = Flask(__name__)
 
-g_secret = '6Ld44cMUAAAAAOjyxpHLSPseZhPnTht-DXZKQOj_'
+app.config['MAIL_SERVER'] = ''
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_PASSWORD'] = ''
+
+mail = Mail(app)
+
+g_secret = ''
 
 # Generate 6-digit ID
 def generate_id():
@@ -34,6 +43,17 @@ def send_message(link_id):
     g_response = r.json()
     if g_response['score'] < 0.6:
         return abort(500)
+
+    with sqlite3.connect(db_name) as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT name, email FROM links WHERE link_id=?', (link_id,))
+        name, email = cur.fetchone()
+    if not email:
+        return redirect('/')
+    
+    subject = 'msg.codes from %s - %s' % (name, email)
+    msg = Message(subject=subject, body=data['message'], sender='msg@gstark.me', recipients=[email])
+    mail.send(msg)
     return json.dumps('sent')
 
 @app.route('/<link_id>')

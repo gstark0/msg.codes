@@ -4,8 +4,9 @@ function generateLink() {
     let name = document.body.querySelector('#name');
     let email = document.body.querySelector('#email');
 
-    if(name.value && email.value) {
+    if(name.value && email.value && email.value.includes('@')) {
         let btn = document.body.querySelector('#generate-button');
+        let generated_link_btn = document.body.querySelector('#generated-link');
 
         // Change button's background color
         btn.style.backgroundColor = '#FA9E8C';
@@ -25,13 +26,29 @@ function generateLink() {
         .then(resp => resp.json())
         .then(resp => {
             // Change button's text to a new link
-            btn.innerHTML = 'msg.codes/' + resp.link_id;
+            btn.style.display = 'none';
+            generated_link_btn.style.display = 'block';
+            generated_link_btn.value = 'msg.codes/' + resp.link_id;
             btn.onclick = function() {event.preventDefault();};
         });
 
     } else {
-        alert('not works');
+        if(!email.value.incldues('@')) {
+            alert('Email is incorrect!');
+        } else {
+            alert('All fields are required!');
+        }
     }
+}
+
+function copyLink() {
+    let linkInput = document.body.querySelector('#generated-link');
+    linkInput.select();
+    linkInput.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+
+    let tooltip = document.body.querySelector('#link-tooltip');
+    tooltip.innerHTML = 'Copied';
 }
 
 function sendMessage() {
@@ -41,11 +58,13 @@ function sendMessage() {
     let email = document.body.querySelector('#email');
     let message = document.body.querySelector('#message');
 
-    if(name.value && email.value && message.value) {
+    if(name.value && email.value && message.value && email.value.includes('@')) {
         let btn = document.body.querySelector('#send-button');
 
         // Change button's background color
         btn.style.backgroundColor = '#FA9E8C';
+        // Change button's text to a new link
+        btn.innerHTML = 'Message has been delivered!';
 
         // Disable inputs
         name.disabled = true;
@@ -62,13 +81,16 @@ function sendMessage() {
             })
             .then(resp => resp.json())
             .then(resp => {
-                // Change button's text to a new link
-                btn.innerHTML = 'Message sent!';
                 btn.onclick = function() {event.preventDefault();};
-                alert('Your message has been sent!')
             });
         });
     } else {
-
+        if(message.value.length < 10) {
+            alert('Your message must have at least 10 characters!')
+        } else if(!email.value.includes('@')) {
+            alert('Email is incorrect!')
+         } else {
+            alert('All fields are required!')
+         }
     }
 }
