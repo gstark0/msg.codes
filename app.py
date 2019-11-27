@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, abort
 from flask_mail import Mail, Message
+from flask_sslify import SSLify
 import sqlite3
 import random
 import string
@@ -17,6 +18,7 @@ app.config['MAIL_USERNAME'] = ''
 app.config['MAIL_PASSWORD'] = ''
 
 mail = Mail(app)
+sslify = SSLify(app)
 
 g_secret = ''
 
